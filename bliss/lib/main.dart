@@ -1,3 +1,6 @@
+import 'package:bliss/ui/screens/checkout_screen.dart';
+import 'package:bliss/ui/screens/home_screen.dart';
+import 'package:bliss/ui/screens/item_screen.dart';
 import 'package:bliss/ui/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -17,12 +20,14 @@ class Bliss extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Bliss',
       routes: {
-        // '/splashScreen': (context) => SplashScreen(),
+        '/homeScreen': (context) => HomeScreen(),
+        '/itemScreen': (context) => ItemScreen(),
+        '/checkoutScreen': (context) => CheckoutScreen()
       },
       theme: ThemeData(
         // fontFamily: 'OpenSans',
         primaryColor: Colors.white,
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.grey,
       ),
       home: SplashScreen(),
     );

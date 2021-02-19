@@ -2,7 +2,23 @@ import 'package:flutter/material.dart';
 
 //white colors
 const Color white = Color.fromRGBO(255, 255, 255, 1);
+const Color white253 = Color.fromRGBO(255, 245, 250, 1);
 
+//grey colors
+const Color grey = Color.fromRGBO(84, 85, 86, 1);
 
+//pink colors
+const Color pink = Color.fromRGBO(255, 114, 187, 1);
+const Color pink159 = Color.fromRGBO(255, 131, 159, 1);
+const Color pink97 = Color.fromRGBO(239, 97, 159, 1);
 
+//yellow colors
+const Color yellow = Color.fromRGBO(255, 222, 99, 1);
 
+//green colors
+const Color green = Color.fromRGBO(149, 241, 199, 1);
+
+//blue colors
+const Color blue254 = Color.fromRGBO(235, 204, 254, 1);
+const Color blue197 = Color.fromRGBO(204, 196, 255, 1);
+const Color blue231 = Color.fromRGBO(243, 231, 255, 1);
