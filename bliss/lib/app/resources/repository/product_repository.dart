@@ -1,5 +1,5 @@
-import 'package:bliss/app/models/items.dart';
+import 'package:bliss/app/models/item.dart';
 
 abstract class ItemsRepository {
-  Future<List<Items>> get();
+  Future<List<Item>> get();
 }

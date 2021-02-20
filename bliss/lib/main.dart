@@ -1,11 +1,13 @@
 import 'package:bliss/app/ui/screens/checkout_screen.dart';
 import 'package:bliss/app/ui/screens/home_screen.dart';
 import 'package:bliss/app/ui/screens/item_screen.dart';
+import 'package:bliss/dependencies_config.dart' as config;
 import 'package:bliss/app/ui/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 void main() {
+  config.init();
   runApp(Bliss());
 }
 
