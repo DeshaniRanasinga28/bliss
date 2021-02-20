@@ -20,8 +20,12 @@ class ItemsMemoryRepository implements ItemsRepository {
       json['id'],
       json['code'],
       json['image'],
-      json['color']
+      json['price'],
+      json['height'],
+      json['width'],
+      json['weight'],
+      json['color'],
+      json['subColor']
     );
   }
 }
-

@@ -24,6 +24,24 @@ class ProductItem extends StatelessWidget {
               ),
             ),
         ),
+        Expanded(
+          flex: 5,
+          child: Container(
+            width: 50.0,
+            height: 50.0,
+            color: Color(int.parse(items.subColor)),
+            child: Text(items.price.toString())
+          ),
+        ),
+        Expanded(
+          flex: 5,
+          child: Container(
+            color: Color(int.parse(items.color)),
+            width: 50.0,
+            height: 50.0,
+            child: Text(items.color)
+          ),
+        ),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(

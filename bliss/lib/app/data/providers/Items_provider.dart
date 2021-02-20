@@ -27,7 +27,12 @@ class ItemsBloc extends Bloc<ItemsState> {
         items.id,
         items.code,
         items.image,
-        items.color
+        items.price,
+        items.height,
+        items.width,
+        items.weight,
+        items.color,
+        items.subColor
     )).toList();
   }
 }
