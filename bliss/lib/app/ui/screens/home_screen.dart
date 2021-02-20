@@ -1,8 +1,8 @@
 import 'package:bliss/app/global/colors.dart';
+import 'package:bliss/app/ui/screens/product_list.dart';
 import 'package:bliss/app/ui/widgets/common_widget.dart';
 import 'package:bliss/app/ui/widgets/containers/category_view.dart';
 import 'package:bliss/app/ui/widgets/containers/search_view.dart';
-import 'package:bliss/app/ui/widgets/items_list_view.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget{
@@ -87,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen>{
                     Container(
                       height: h < 770.0 ? 300.0 : 330.0,
                       color: white253,
-                      child: ItemsListView(),
+                      child: ProductList(),
                       // child: ListView(
                       //   scrollDirection: Axis.horizontal,
                       //   children: [

@@ -1,15 +1,15 @@
-import 'package:bliss/app/util/data/item_state.dart';
-import 'package:bliss/app/util/data/items_bloc.dart';
-import 'package:bliss/dependencies_config.dart';
+import 'package:bliss/app/data/providers/Items_provider.dart';
+import 'package:bliss/app/bloc/items_state.dart';
+import 'package:bliss/app/ui/screens/product_item.dart';
 import 'package:flutter/material.dart';
 
-import 'containers/product_item.dart';
+import '../../dependencies_config.dart';
 
-class ItemsListView extends StatelessWidget {
+class ProductList extends StatelessWidget {
   final ItemsBloc _bloc;
 
-  ItemsListView() : _bloc = getIt<ItemsBloc>(){
-    _bloc.search('Elements');
+  ProductList() : _bloc= getIt<ItemsBloc>(){
+    _bloc.getItemList();
   }
 
   @override
@@ -47,12 +47,4 @@ class ItemsListView extends StatelessWidget {
       },
     );
   }
-
-  // Widget buildList(AsyncSnapshot<UserseResponse> snapshot){
-  //   return ListView.builder(
-  //       itemCount: snapshot.data.users.length,
-  //       itemBuilder: (BuildContext, int index){
-  //         return getStructuredGridCell(snapshot.data.users[index]);
-  //       });
-  // }
 }
