@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen>{
             SliverFillRemaining(
               hasScrollBody: false,
               child: Container(
-                margin: EdgeInsets.symmetric( horizontal: 20.0),
+                margin: EdgeInsets.only( left: 30.0, top: 10.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,6 +36,7 @@ class _HomeScreenState extends State<HomeScreen>{
                         ),
                         Expanded(
                             child: Container(
+                              margin: EdgeInsets.only( right: 30.0),
                               alignment: Alignment.centerRight,
                               height:  h < 770.0 ? 50.0 : 60.0,
                               child: CircleAvatar(
@@ -51,6 +52,7 @@ class _HomeScreenState extends State<HomeScreen>{
                     textLabel('Sudesh Kumara', 30.0, grey, FontWeight.bold),
                     Container(
                       padding: EdgeInsets.all(h < 770.0 ? 5.0 : 8.0),
+                        margin: EdgeInsets.only( right: 30.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(25)),
                           color: white,

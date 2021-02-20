@@ -21,7 +21,7 @@ class _CategoryViewState extends State<CategoryView> {
   @override
   Widget build(BuildContext context) {
     var h = MediaQuery.of(context).size.height;
-    return  Padding(
+    return Padding(
       padding: EdgeInsets.fromLTRB(1.0, 2.0, 10.0, 4.0),
       child: Container(
         width: h < 770.0 ? 120.0 : 130.0,
