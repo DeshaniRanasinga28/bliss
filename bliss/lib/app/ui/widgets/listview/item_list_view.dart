@@ -1,22 +1,26 @@
+import 'package:bliss/app/data/models/Items.dart';
 import 'package:bliss/app/data/providers/Items_provider.dart';
 import 'package:bliss/app/bloc/items_state.dart';
+import 'package:bliss/app/global/colors.dart';
 import 'package:bliss/app/ui/screens/product_item.dart';
 import 'package:flutter/material.dart';
 
-import '../../dependencies_config.dart';
+import '../../../dependencies_config.dart';
+import '../containers/item_view.dart';
 
-class ProductList extends StatelessWidget {
-  final ItemsBloc _bloc;
+class ItemListView extends StatelessWidget {
+  final ItemsBloc _itemsBloc;
 
-  ProductList() : _bloc= getIt<ItemsBloc>(){
-    _bloc.getItemList();
+  ItemListView() : _itemsBloc = getIt<ItemsBloc>(){
+    _itemsBloc.getItemList();
   }
 
   @override
   Widget build(BuildContext context) {
+    var h = MediaQuery.of(context).size.height;
     return StreamBuilder<ItemsState>(
-      initialData: _bloc.state,
-      stream: _bloc.observableState,
+      initialData: _itemsBloc.state,
+      stream: _itemsBloc.observableState,
       builder: (context, snapshot) {
         final state = snapshot.data;
 
@@ -36,15 +40,17 @@ class ProductList extends StatelessWidget {
   }
 
   Widget _renderProductList(BuildContext context, LoadedItemsState state) {
-    return GridView.builder(
+    return ListView.builder(
+      scrollDirection: Axis.horizontal,
       itemCount: state.items.length,
-      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 250.0, childAspectRatio: 0.58),
       itemBuilder: (context, index) {
         final PopularItemState product = state.items[index];
-
         return ProductItem(product);
       },
     );
   }
 }
+
+
+
+

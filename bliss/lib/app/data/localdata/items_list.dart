@@ -7,7 +7,7 @@ const items = '''[
     "height": "60 cm",
     "width": "35 cm",
     "weight": "850 g",
-    "color" : "0xFFCCC4FF",
+    "color" : "0xFFEBCCFE",
     "subColor" : "0xFFF3E7FF"
   },
   {
@@ -18,8 +18,7 @@ const items = '''[
     "height": "60 cm",
     "width": "35 cm",
     "weight": "850 g",
-    "color" : "0xFFB0AEFF",
+    "color" : "0xFFCCC4FF",
     "subColor" : "0xFFF3E7FF"
-    
   }
 ]''';
