@@ -13,6 +13,9 @@ class ItemScreen extends StatefulWidget{
 }
 
 class _ItemScreenState extends State<ItemScreen>{
+
+  int i = 0;
+
   @override
   Widget build(BuildContext context) {
     var h = MediaQuery.of(context).size.height;
@@ -155,18 +158,31 @@ class _ItemScreenState extends State<ItemScreen>{
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        CircleAvatar(
-                          backgroundColor: Colors.white,
-                          child: Icon(Icons.remove, color: grey,),
+                        GestureDetector(
+                          child: CircleAvatar(
+                            backgroundColor: Colors.white,
+                            child: Icon(Icons.remove, color: grey,),
+                          ),
+                          onTap: (){
+                            setState(() {
+                              i <= 0 ? i = 0 : i--;
+                            });
+                          },
                         ),
                         Padding(padding: EdgeInsets.symmetric(horizontal: 10.0),
-                          child: textLabel('0',  h < 770.0  ? 20.0 : 24.0, grey, FontWeight.w500),
+                          child: textLabel(i.toString(),  h < 770.0  ? 20.0 : 24.0, grey, FontWeight.w500),
                         ),
-                        CircleAvatar(
-                          backgroundColor: Colors.white,
-                          child: Icon(Icons.add, color: grey),
-
-                        ),
+                        GestureDetector(
+                          child: CircleAvatar(
+                            backgroundColor: Colors.white,
+                            child: Icon(Icons.add, color: grey),
+                          ),
+                          onTap: (){
+                            setState(() {
+                              i++;
+                            });
+                          },
+                        )
                       ],
                     ),
                   ), flex: 1,),
@@ -179,7 +195,9 @@ class _ItemScreenState extends State<ItemScreen>{
                       child: RaisedButton(
                         color: pink97,
                         child: textLabel('Add to Cart',  h < 770.0  ? 20.0 : 24.0, white, FontWeight.w500),
-                        onPressed: () {},
+                        onPressed: () {
+                          print('i:---> $i');
+                        },
                         shape: new RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(10.0),
                         ),
