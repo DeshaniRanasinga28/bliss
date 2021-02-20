@@ -1,7 +1,7 @@
-import 'package:bliss/ui/screens/checkout_screen.dart';
-import 'package:bliss/ui/screens/home_screen.dart';
-import 'package:bliss/ui/screens/item_screen.dart';
-import 'package:bliss/ui/splash_screen.dart';
+import 'package:bliss/app/ui/screens/checkout_screen.dart';
+import 'package:bliss/app/ui/screens/home_screen.dart';
+import 'package:bliss/app/ui/screens/item_screen.dart';
+import 'package:bliss/app/ui/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
