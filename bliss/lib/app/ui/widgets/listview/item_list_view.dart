@@ -1,12 +1,9 @@
-import 'package:bliss/app/data/models/Items.dart';
 import 'package:bliss/app/data/providers/Items_provider.dart';
 import 'package:bliss/app/bloc/items_state.dart';
 import 'package:bliss/app/global/colors.dart';
-import 'package:bliss/app/ui/screens/product_item.dart';
+import 'package:bliss/app/ui/widgets/containers/item_view.dart';
 import 'package:flutter/material.dart';
-
 import '../../../dependencies_config.dart';
-import '../containers/item_view.dart';
 
 class ItemListView extends StatelessWidget {
   final ItemsBloc _itemsBloc;
@@ -26,7 +23,7 @@ class ItemListView extends StatelessWidget {
 
         if (state is LoadingItemsState) {
           return const Center(
-              child: CircularProgressIndicator()
+              child: CircularProgressIndicator(backgroundColor: white)
           );
         } else if (state is ErrorItemsState) {
           return Center(

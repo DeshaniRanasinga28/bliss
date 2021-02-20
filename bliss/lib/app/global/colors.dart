@@ -19,8 +19,7 @@ const Color yellow = Color.fromRGBO(255, 222, 99, 1);
 const Color green = Color.fromRGBO(149, 241, 199, 1);
 
 //blue colors
-const Color blue254 = Color.fromRGBO(235, 204, 254, 1); //0xFFEBCCFE
 const Color blue197 = Color.fromRGBO(204, 196, 255, 1); //0xFFCCC4FF
-const Color blue231 = Color.fromRGBO(243, 231, 255, 1); //0xFFF3E7FF
-const Color blue174 = Color.fromRGBO(176, 174, 255, 1); //0xFFB0AEFF
-const Color blue227 = Color.fromRGBO(255, 227, 255, 1); //0xFFFFE3FF
+// const Color blue254 = Color.fromRGBO(235, 204, 254, 1); //0xFFEBCCFE
+// const Color blue231 = Color.fromRGBO(243, 231, 255, 1); //0xFFF3E7FF
+// const Color blue227 = Color.fromRGBO(226, 227, 255, 1); //0xFFE2E3FF

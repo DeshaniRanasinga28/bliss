@@ -2,7 +2,6 @@ import 'package:bliss/app/global/colors.dart';
 import 'package:bliss/app/ui/widgets/listview/item_list_view.dart';
 import 'package:bliss/app/ui/widgets/common_widget.dart';
 import 'package:bliss/app/ui/widgets/containers/category_view.dart';
-import 'package:bliss/app/ui/widgets/containers/item_view.dart';
 import 'package:bliss/app/ui/widgets/containers/search_view.dart';
 import 'package:flutter/material.dart';
 
@@ -48,28 +47,12 @@ class _HomeScreenState extends State<HomeScreen>{
                         )
                       ],
                     ),
-                    textLabel(
-                        'Hello,',
-                        h < 770.0  ? 18.0 : 20.0,
-                        grey,
-                        FontWeight.w500),
-                    textLabel(
-                        'Sudesh Kumara',
-                        30.0,
-                        grey,
-                        FontWeight.bold),
+                    textLabel('Hello,', h < 770.0  ? 18.0 : 20.0, grey, FontWeight.w500),
+                    textLabel('Sudesh Kumara', 30.0, grey, FontWeight.bold),
                     SearchView(),
-                    textLabel(
-                        'By Category,',
-                        h < 770.0  ? 18.0 : 20.0,
-                        grey,
-                        FontWeight.w500),
+                    textLabel('By Category,', h < 770.0  ? 18.0 : 20.0, grey, FontWeight.w500),
                     CategoryView(),
-                    textLabel(
-                        'Most Popular',
-                        h < 770.0  ? 18.0 : 20.0,
-                        grey,
-                        FontWeight.w500),
+                    textLabel('Most Popular', h < 770.0  ? 18.0 : 20.0, grey, FontWeight.w500),
                     Container(
                       height: h < 770.0 ? 300.0 : 330.0,
                       color: white253,
