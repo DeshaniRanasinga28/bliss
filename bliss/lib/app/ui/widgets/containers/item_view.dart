@@ -1,11 +1,8 @@
-import 'package:bliss/app/bloc/items_state.dart';
 import 'package:bliss/app/global/colors.dart';
-import 'package:bliss/app/ui/screens/item_screen.dart';
+import 'package:bliss/app/ui/screens/item/item_screen.dart';
 import 'package:flutter/material.dart';
 
 class ProductItem extends StatelessWidget {
-  final PopularItemState items;
-  const ProductItem(this.items);
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +15,10 @@ class ProductItem extends StatelessWidget {
               width:  h < 770.0 ? 220.0 : 230.0,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(20)),
-                  color: Color(int.parse(items.color)),
+                  color: Colors.blue,
                   boxShadow: [
                     BoxShadow(
-                      color: Color(int.parse(items.color)),
+                      color: Colors.blue,
                       blurRadius: 8.0,
                     ),]
               ),
@@ -35,7 +32,7 @@ class ProductItem extends StatelessWidget {
                           height: h < 770.0 ? 50.0 : 60.0,
                           alignment: Alignment.centerLeft,
                           child:  Text(
-                            items.code,
+                            "items.code",
                             style: TextStyle(
                               fontFamily: 'Poppins',
                               fontSize: h < 770.0 ? 18.0 : 20.0,
@@ -64,7 +61,7 @@ class ProductItem extends StatelessWidget {
                         height: h < 770.0 ? 50.0 : 60.0,
                         alignment: Alignment.centerLeft,
                         child: Center(
-                          child: Image.network(items.image),
+                          child: Image.asset("images/bag-one.png"),
                         )
                     ),
                   ),
@@ -76,7 +73,7 @@ class ProductItem extends StatelessWidget {
               context,
               MaterialPageRoute(
                   builder: (context) => ItemScreen(
-                    items: items,
+                    // items: items,
                   )
               ),
               ModalRoute.withName("/home")

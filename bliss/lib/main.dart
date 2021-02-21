@@ -1,13 +1,14 @@
-import 'package:bliss/app/ui/screens/checkout_screen.dart';
-import 'package:bliss/app/ui/screens/home_screen.dart';
-import 'package:bliss/app/ui/screens/item_screen.dart';
-import 'package:bliss/app/dependencies_config.dart' as config;
+import 'package:bliss/app/ui/screens/checkout/checkout_screen.dart';
+import 'package:bliss/app/ui/screens/home/home_screen.dart';
+import 'package:bliss/app/ui/screens/item/item_screen.dart';
 import 'package:bliss/app/ui/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+
+import 'app/provider_config.dart';
 
 void main() {
-  config.init();
   runApp(Bliss());
 }
 
@@ -18,20 +19,23 @@ class Bliss extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Bliss',
-      routes: {
-        '/homeScreen': (context) => HomeScreen(),
-        '/itemScreen': (context) => ItemScreen(),
-        '/checkoutScreen': (context) => CheckoutScreen()
-      },
-      theme: ThemeData(
-        // fontFamily: 'OpenSans',
-        primaryColor: Colors.white,
-        primarySwatch: Colors.grey,
+    return MultiProvider(
+        providers: providers,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Bliss',
+        routes: {
+          '/homeScreen': (context) => HomeScreen(),
+          '/itemScreen': (context) => ItemScreen(),
+          '/checkoutScreen': (context) => CheckoutScreen()
+        },
+        theme: ThemeData(
+          // fontFamily: 'OpenSans',
+          primaryColor: Colors.white,
+          primarySwatch: Colors.grey,
+        ),
+        home: SplashScreen(),
       ),
-      home: SplashScreen(),
     );
   }
 }

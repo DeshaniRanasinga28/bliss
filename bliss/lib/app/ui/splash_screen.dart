@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:bliss/app/global/colors.dart';
-import 'package:bliss/app/ui/screens/home_screen.dart';
+import 'package:bliss/app/ui/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {

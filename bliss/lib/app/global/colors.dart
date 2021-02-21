@@ -12,6 +12,9 @@ const Color pink = Color.fromRGBO(255, 114, 187, 1);
 const Color pink159 = Color.fromRGBO(255, 131, 159, 1);
 const Color pink97 = Color.fromRGBO(239, 97, 159, 1);
 
+//red colors
+const Color red = Color.fromRGBO(255, 0, 0, 1);
+
 //yellow colors
 const Color yellow = Color.fromRGBO(255, 222, 99, 1);
 
