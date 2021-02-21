@@ -1,8 +1,12 @@
 import 'package:bliss/app/global/colors.dart';
+import 'package:bliss/app/model/item.dart';
 import 'package:bliss/app/ui/screens/item/item_screen.dart';
 import 'package:flutter/material.dart';
 
 class ProductItem extends StatelessWidget {
+  final Item item;
+
+  const ProductItem(this.item);
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +19,10 @@ class ProductItem extends StatelessWidget {
               width:  h < 770.0 ? 220.0 : 230.0,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(20)),
-                  color: Colors.blue,
+                  color: Color(int.parse(item.color)),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.blue,
+                      color: Color(int.parse(item.color)),
                       blurRadius: 8.0,
                     ),]
               ),
@@ -32,7 +36,7 @@ class ProductItem extends StatelessWidget {
                           height: h < 770.0 ? 50.0 : 60.0,
                           alignment: Alignment.centerLeft,
                           child:  Text(
-                            "items.code",
+                            item.price,
                             style: TextStyle(
                               fontFamily: 'Poppins',
                               fontSize: h < 770.0 ? 18.0 : 20.0,
@@ -61,19 +65,20 @@ class ProductItem extends StatelessWidget {
                         height: h < 770.0 ? 50.0 : 60.0,
                         alignment: Alignment.centerLeft,
                         child: Center(
-                          child: Image.asset("images/bag-one.png"),
+                          child: Image.network(item.image),
                         )
                     ),
                   ),
                 ],
               )
           ),
-          // onTap: () => Navigator.of(context).pushNamed("/itemScreen"),
-          onTap: () => Navigator.pushAndRemoveUntil(
+          onTap: () =>
+              // Navigator.push(context, MaterialPageRoute(
+              Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
                   builder: (context) => ItemScreen(
-                    // items: items,
+                    item,
                   )
               ),
               ModalRoute.withName("/home")

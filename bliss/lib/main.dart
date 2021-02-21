@@ -26,7 +26,6 @@ class Bliss extends StatelessWidget {
         title: 'Bliss',
         routes: {
           '/homeScreen': (context) => HomeScreen(),
-          '/itemScreen': (context) => ItemScreen(),
           '/checkoutScreen': (context) => CheckoutScreen()
         },
         theme: ThemeData(

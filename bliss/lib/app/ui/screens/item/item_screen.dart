@@ -1,10 +1,11 @@
 import 'package:bliss/app/global/colors.dart';
+import 'package:bliss/app/model/item.dart';
 import 'package:bliss/app/ui/widgets/common_widget.dart';
 import 'package:flutter/material.dart';
 
 class ItemScreen extends StatefulWidget{
-  // final PopularItemState items;
-  // const ItemScreen({Key key, this.items}) : super(key: key);
+  final Item item;
+  const ItemScreen(this.item);
   @override
   State<StatefulWidget> createState() {
     return _ItemScreenState();
@@ -20,10 +21,10 @@ class _ItemScreenState extends State<ItemScreen>{
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
     return Scaffold(
-        backgroundColor: blue197,
+        backgroundColor: Color(int.parse(widget.item.color)),
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          backgroundColor: blue197,
+          backgroundColor: Color(int.parse(widget.item.color)),
           centerTitle: true,
           automaticallyImplyLeading: false,
           leading: new IconButton(
@@ -65,7 +66,7 @@ class _ItemScreenState extends State<ItemScreen>{
                 topLeft: Radius.circular(30.0),
                 topRight: Radius.circular(30.0),
               ),
-              color: Colors.blue,//Color(int.parse('widget.items.subColor'))
+              color: Color(int.parse(widget.item.cardcolor)),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,7 +74,7 @@ class _ItemScreenState extends State<ItemScreen>{
                 Expanded(
                   child: Container(
                     alignment: Alignment.centerLeft,
-                    child: textLabel('widget.items.code',  h < 770.0  ? 36.0 : 40.0, grey, FontWeight.w500),
+                    child: textLabel(widget.item.code,  h < 770.0  ? 36.0 : 40.0, grey, FontWeight.w500),
                 ), flex: 2,),
                 Expanded(
                   child: Container(
@@ -93,7 +94,7 @@ class _ItemScreenState extends State<ItemScreen>{
                           Expanded(
                             child: Container(
                               // color: Colors.blue,
-                              child: textLabel('widget.items.price.toString()',  h < 770.0  ? 20.0 : 24.0, grey, FontWeight.w500),
+                              child: textLabel(widget.item.price,  h < 770.0  ? 20.0 : 24.0, grey, FontWeight.w500),
                             ),
                           )
                         ],
@@ -109,7 +110,7 @@ class _ItemScreenState extends State<ItemScreen>{
                           Expanded(
                             child: Container(
                               // color: Colors.blue,
-                              child: textLabel('widget.items.height',  h < 770.0  ? 20.0 : 24.0, grey, FontWeight.w500),
+                              child: textLabel(widget.item.height,  h < 770.0  ? 20.0 : 24.0, grey, FontWeight.w500),
                             ),
                           )
                         ],
@@ -125,7 +126,7 @@ class _ItemScreenState extends State<ItemScreen>{
                           Expanded(
                             child: Container(
                               // color: Colors.blue,
-                              child: textLabel('widget.items.width',  h < 770.0  ? 20.0 : 24.0, grey, FontWeight.w500),
+                              child: textLabel(widget.item.width,  h < 770.0  ? 20.0 : 24.0, grey, FontWeight.w500),
                             ),
                           )
                         ],
@@ -141,7 +142,7 @@ class _ItemScreenState extends State<ItemScreen>{
                           Expanded(
                             child: Container(
                               // color: Colors.blue,
-                              child: textLabel('widget.items.weight',  h < 770.0  ? 20.0 : 24.0, grey, FontWeight.w500),
+                              child: textLabel(widget.item.weight,  h < 770.0  ? 20.0 : 24.0, grey, FontWeight.w500),
                             ),
                           )
                         ],

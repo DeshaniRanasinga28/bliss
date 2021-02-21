@@ -20,8 +20,8 @@ class _HomeScreenState extends State<HomeScreen>{
 
   @override
   void initState() {
-    final getDataPMDL = Provider.of<ItemProviderModel>(context, listen: false);
-    getDataPMDL.getItemsData(context);
+    final getItemList = Provider.of<ItemProviderModel>(context, listen: false);
+    getItemList.getItemsData(context);
     super.initState();
   }
 
@@ -29,11 +29,11 @@ class _HomeScreenState extends State<HomeScreen>{
   @override
   Widget build(BuildContext context) {
     var h = MediaQuery.of(context).size.height;
-    final getDataPMDL = Provider.of<ItemProviderModel>(context);
+    final getItemList = Provider.of<ItemProviderModel>(context);
     return Scaffold(
       backgroundColor: white253,
       body:
-      !getDataPMDL.isLoading ?
+      !getItemList.isLoading ?
       SafeArea(
         child: CustomScrollView(
           slivers: [
@@ -76,10 +76,12 @@ class _HomeScreenState extends State<HomeScreen>{
                       // child: ItemView(),
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: getDataPMDL.itemData.data.length,
+                        itemCount: getItemList.itemData.data.length,
                         itemBuilder: (context, index) {
+                          final Item item = getItemList.itemData.data[index];
                           // final ItemData item = getItemList.itemsData.data[index];
-                          return Text(getDataPMDL.itemData.data[index].price);//ProductItem( );
+                          return ProductItem(item); //Text(item.price);
+                          // return Text(getDataPMDL.itemData.data[index].price);//ProductItem( );
                         },
                       ),
                     ),
