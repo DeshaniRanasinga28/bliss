@@ -1,7 +1,10 @@
 import 'package:bliss/app/global/colors.dart';
 import 'package:bliss/app/model/item.dart';
+import 'package:bliss/app/provider/item_provider.dart';
 import 'package:bliss/app/ui/widgets/common_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:provider/provider.dart';
 
 class ItemScreen extends StatefulWidget{
   final Item item;
@@ -20,6 +23,12 @@ class _ItemScreenState extends State<ItemScreen>{
   Widget build(BuildContext context) {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
+
+    final getDataPMDL = Provider.of<ItemProviderModel>(context);
+
+    bool favoriteProducts = false;
+    favoriteProducts =  getDataPMDL.selectedItem.favoriteProducts;
+
     return Scaffold(
         backgroundColor: Color(int.parse(widget.item.color)),
         resizeToAvoidBottomInset: false,
@@ -37,9 +46,52 @@ class _ItemScreenState extends State<ItemScreen>{
                 icon: Icon(Icons.share, color: white253),
             ),
             IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.favorite, color: white253),
+              onPressed: () {
+                print("favorite");
+                favoriteProducts = !favoriteProducts;
+                getDataPMDL.addFavoriteProducts(
+                    context,
+                    favoriteProducts,
+                    getDataPMDL.itemData.data.indexOf(getDataPMDL.selectedItem));
+              },
+              icon: Icon(Icons.favorite,
+                  color: white253
+              ),
             ),
+
+            // Container(
+            //   padding: const EdgeInsets.only(right: 20.0, left: 20),
+            //   child: InkWell(
+            //       onTap: () {
+            //         // favoriteProducts = !favoriteProducts;
+            //         // getItemList.addToFav(
+            //         //     context,
+            //         //     favoriteProducts,
+            //         //     getItemList.itemData.data.indexOf(getItemList.selectedItem));
+            //         print("favorite");
+            //       },
+            //       child: Icon(
+            //         Icons.favorite,
+            //         color: widget.item.favoriteProducts
+            //             ? Colors.red
+            //             : Colors.white,
+            //       )),
+            // ),
+
+            //-------
+            // GestureDetector(
+            //   onTap: () {
+            //     favoriteProducts = !favoriteProducts;
+            //     getItemList.addToFav(
+            //         context,
+            //         favoriteProducts,
+            //         getItemList.itemData.data.indexOf(getItemList.selectedItem));
+            //   },
+            //   child: Icon(
+            //       Icons.favorite,
+            //       color: getItemList.selectedItem.favoriteProducts ? red : white253
+            //   ),
+            // ),
             IconButton(
               onPressed: () => Navigator.of(context).pushNamed("/checkoutScreen"),
               icon: Icon(Icons.shopping_cart, color: white253),
@@ -74,7 +126,7 @@ class _ItemScreenState extends State<ItemScreen>{
                 Expanded(
                   child: Container(
                     alignment: Alignment.centerLeft,
-                    child: textLabel(widget.item.code,  h < 770.0  ? 36.0 : 40.0, grey, FontWeight.w500),
+                    child: textLabel(widget.item.code,  h < 770.0 ? 36.0 : 40.0, grey, FontWeight.w500),
                 ), flex: 2,),
                 Expanded(
                   child: Container(
@@ -164,13 +216,16 @@ class _ItemScreenState extends State<ItemScreen>{
                             child: Icon(Icons.remove, color: grey,),
                           ),
                           onTap: (){
-                            setState(() {
-                              i <= 0 ? i = 0 : i--;
-                            });
+                            getDataPMDL.decrementQuant(context, getDataPMDL.itemData.data.indexOf(getDataPMDL.selectedItem));
+                            // setState(() {
+                            //   // i <= 0 ? i = 0 : i--;
+                            //   getItemList.decrementQuant(context, getItemList.itemData.data.indexOf(getItemList.selectedItem)
+                            //   );
+                            // });
                           },
                         ),
                         Padding(padding: EdgeInsets.symmetric(horizontal: 10.0),
-                          child: textLabel(i.toString(),  h < 770.0  ? 20.0 : 24.0, grey, FontWeight.w500),
+                          child: textLabel(widget.item.quantity.toString(),  h < 770.0  ? 20.0 : 24.0, grey, FontWeight.w500),
                         ),
                         GestureDetector(
                           child: CircleAvatar(
@@ -178,9 +233,9 @@ class _ItemScreenState extends State<ItemScreen>{
                             child: Icon(Icons.add, color: grey),
                           ),
                           onTap: (){
-                            setState(() {
-                              i++;
-                            });
+                            getDataPMDL.incrementQuant(
+                                context,
+                                getDataPMDL.itemData.data.indexOf(getDataPMDL.selectedItem));
                           },
                         )
                       ],

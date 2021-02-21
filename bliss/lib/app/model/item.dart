@@ -25,7 +25,7 @@ class Item {
   String cardcolor;
   String category;
   String color;
-  bool isFav = false;
+  bool favoriteProducts = false;
   int quantity;
 
   Item({
@@ -39,7 +39,7 @@ class Item {
     this.category,
     this.cardcolor,
     this.color,
-    this.isFav,
+    this.favoriteProducts,
     this.quantity});
 
   factory Item.fromJson(Map<String, dynamic> json) => Item(
@@ -53,7 +53,7 @@ class Item {
       category: json["category"],
       cardcolor: json["cardcolor"],
       color: json["color"],
-      isFav: false,
+      favoriteProducts: false,
       quantity: 0);
 
   Map<String, dynamic> toJson() => {

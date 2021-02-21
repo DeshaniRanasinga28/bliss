@@ -38,28 +38,29 @@ class ItemProviderModel with ChangeNotifier {
     });
   }
 
-  // ///set navigating item as the single item from the list
-  // setSingleItem(item) => selectedItem = item;
+  ///set navigating item as the single item from the list
+  setSingleItem(item) => selectedItem = item;
   //
-  // ///adding single item to favourites/ set as favourite
-  // addToFav(context, fav, index) {
-  //   itemsData.data[index].isFav = fav;
-  //   notifyListeners();
-  // }
+
+
+  addFavoriteProducts(context, favoriteProducts, index) {
+    itemData.data[index].favoriteProducts = favoriteProducts;
+    notifyListeners();
+  }
   //
-  // ///increase the quantity of a single item
-  // incrementQuant(context, index) {
-  //   itemsData.data[index].quantity++;
-  //   notifyListeners();
-  // }
-  //
-  // ///decrease the quantity of a single item
-  // decrementQuant(context, index) {
-  //   if (itemsData.data[index].quantity > 0) {
-  //     itemsData.data[index].quantity--;
-  //   }
-  //   notifyListeners();
-  // }
+  ///increase the quantity of a single item
+  incrementQuant(context, index) {
+    itemData.data[index].quantity++;
+    notifyListeners();
+  }
+
+  ///decrease the quantity of a single item
+  decrementQuant(context, index) {
+    if (itemData.data[index].quantity > 0) {
+      itemData.data[index].quantity--;
+    }
+    notifyListeners();
+  }
   //
   // ///add single item to cart
   // addToCart(context, item) {

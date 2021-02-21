@@ -25,15 +25,16 @@ class _HomeScreenState extends State<HomeScreen>{
     super.initState();
   }
 
+  bool favoriteProducts = false;
 
   @override
   Widget build(BuildContext context) {
-    var h = MediaQuery.of(context).size.height;
-    final getItemList = Provider.of<ItemProviderModel>(context);
+    double h = MediaQuery.of(context).size.height;
+    final getDataPMDL = Provider.of<ItemProviderModel>(context);
     return Scaffold(
       backgroundColor: white253,
       body:
-      !getItemList.isLoading ?
+      !getDataPMDL.isLoading ?
       SafeArea(
         child: CustomScrollView(
           slivers: [
@@ -72,17 +73,19 @@ class _HomeScreenState extends State<HomeScreen>{
                     Container(
                       height: h < 770.0 ? 300.0 : 330.0,
                       color: white253,
-                      // child: ProductList(),
-                      // child: ItemView(),
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: getItemList.itemData.data.length,
+                        itemCount: getDataPMDL.itemData.data.length != 0
+                            ? getDataPMDL.itemData.data.length
+                            : 0,
                         itemBuilder: (context, index) {
-                          final Item item = getItemList.itemData.data[index];
-                          // final ItemData item = getItemList.itemsData.data[index];
-                          return ProductItem(item); //Text(item.price);
-                          // return Text(getDataPMDL.itemData.data[index].price);//ProductItem( );
-                        },
+                          final Item item = getDataPMDL.itemData.data[index];
+                          return ProductItem(
+                              item,
+                              index,
+                              false,
+                          );
+                        }
                       ),
                     ),
                     SizedBox(height: h < 770.0  ? 5.0 : 10.0,)
