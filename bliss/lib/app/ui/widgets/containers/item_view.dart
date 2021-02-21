@@ -96,7 +96,7 @@ class ProductItem extends StatelessWidget {
               context,
               MaterialPageRoute(
                   builder: (context) => ItemScreen(
-                    item
+                    item,
                   )
               ),
               ModalRoute.withName("/home")

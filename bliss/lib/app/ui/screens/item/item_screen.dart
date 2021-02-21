@@ -26,8 +26,8 @@ class _ItemScreenState extends State<ItemScreen>{
 
     final getDataPMDL = Provider.of<ItemProviderModel>(context);
 
-    bool favoriteProducts = false;
-    favoriteProducts =  getDataPMDL.selectedItem.favoriteProducts;
+    bool fp = false;
+    fp = widget.item.favoriteProducts;
 
     return Scaffold(
         backgroundColor: Color(int.parse(widget.item.color)),
@@ -48,50 +48,19 @@ class _ItemScreenState extends State<ItemScreen>{
             IconButton(
               onPressed: () {
                 print("favorite");
-                favoriteProducts = !favoriteProducts;
+                fp = !fp;
                 getDataPMDL.addFavoriteProducts(
                     context,
-                    favoriteProducts,
+                    fp,
                     getDataPMDL.itemData.data.indexOf(getDataPMDL.selectedItem));
               },
-              icon: Icon(Icons.favorite,
-                  color: white253
+              icon: Icon(
+                Icons.favorite,
+                  color: widget.item.favoriteProducts
+                      ? red
+                      : white253
               ),
             ),
-
-            // Container(
-            //   padding: const EdgeInsets.only(right: 20.0, left: 20),
-            //   child: InkWell(
-            //       onTap: () {
-            //         // favoriteProducts = !favoriteProducts;
-            //         // getItemList.addToFav(
-            //         //     context,
-            //         //     favoriteProducts,
-            //         //     getItemList.itemData.data.indexOf(getItemList.selectedItem));
-            //         print("favorite");
-            //       },
-            //       child: Icon(
-            //         Icons.favorite,
-            //         color: widget.item.favoriteProducts
-            //             ? Colors.red
-            //             : Colors.white,
-            //       )),
-            // ),
-
-            //-------
-            // GestureDetector(
-            //   onTap: () {
-            //     favoriteProducts = !favoriteProducts;
-            //     getItemList.addToFav(
-            //         context,
-            //         favoriteProducts,
-            //         getItemList.itemData.data.indexOf(getItemList.selectedItem));
-            //   },
-            //   child: Icon(
-            //       Icons.favorite,
-            //       color: getItemList.selectedItem.favoriteProducts ? red : white253
-            //   ),
-            // ),
             IconButton(
               onPressed: () => Navigator.of(context).pushNamed("/checkoutScreen"),
               icon: Icon(Icons.shopping_cart, color: white253),
