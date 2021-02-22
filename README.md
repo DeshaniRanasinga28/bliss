@@ -16,6 +16,10 @@ Step 2 - Lates code is available in develop branch and using the following git c
 
 ` ~$ git checkout develop `
 
-Step 3 - Open the project folder and execute the following command or click flutter pub get in the application's **pubspec.yml** file. It helps to gets all the dependencies listed in the pubspec.yaml file:
+Step 3 - Open the project folder using IDE (Android studio/VS code) and execute the following command or click flutter pub get in the application's **pubspec.yml** file. It helps to gets all the dependencies listed in the pubspec.yaml file:
 
 `flutter pub get`
+
+Step 4 - Connect the device or create/run the virtual device (emulator):
+
+Step 5 - Run the application:
