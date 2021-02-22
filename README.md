@@ -33,6 +33,8 @@ Open Android folder inside the Bliss Application using the Android Studio:
 
 ## Running the application with iOS Native code
 
+# State management of the app
+
 Open Runner.xcworkspace file inside the Bliss Application's ios folder using the Xcode: 
 1. Clean Build Project
 2. Build
