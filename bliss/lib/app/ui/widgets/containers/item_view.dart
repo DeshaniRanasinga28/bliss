@@ -1,7 +1,7 @@
 import 'package:bliss/app/global/colors.dart';
 import 'package:bliss/app/model/item.dart';
 import 'package:bliss/app/provider/item_provider.dart';
-import 'package:bliss/app/ui/screens/item/item_screen.dart';
+import 'package:bliss/app/global/global.dart' as global;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,6 +18,8 @@ class ProductItem extends StatelessWidget {
     bool fp = favoriteProducts;
     final getItemList = Provider.of<ItemProviderModel>(context);
     fp = getItemList.itemData.data[index].favoriteProducts;
+
+    print("fg 1:--->${fp.toString()}");
 
     var h = MediaQuery.of(context).size.height;
     return Padding(
@@ -64,6 +66,8 @@ class ProductItem extends StatelessWidget {
                               onPressed: (){
                                 fp = !fp;
                                 getItemList.addFavoriteProducts(context, fp, index);
+                                global.addFav = fp;
+                                print("fg 3:--->${fp.toString()}");
                               },
                               icon: !fp
                                   ? Icon(Icons.favorite, color: white)

@@ -1,6 +1,7 @@
 import 'package:bliss/app/global/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../common_widget.dart';
 
 class SearchView extends StatefulWidget {
 
@@ -26,18 +27,7 @@ class _SearchViewState extends State<SearchView> {
                   height: h < 770.0 ? 42.0 : 48.0,
                   color: white,
                   alignment: Alignment.centerLeft,
-                  child: TextField(
-                    autofocus: true,
-                    style: TextStyle(color: grey, fontSize: 20),
-                    decoration: InputDecoration.collapsed(
-                      hintText: "Search Your Model",
-                      hintStyle: TextStyle(
-                          fontSize: h < 770.0 ? 18.0 : 20.0,
-                          color: Colors.grey[400]
-                      ),
-                      border: InputBorder.none,
-                    ),
-                  )
+                  child: textLabel("Search Your Model", h < 770.0 ? 18.0 : 20.0, Colors.grey[400], null),
               ),
               flex: 6,
             ),

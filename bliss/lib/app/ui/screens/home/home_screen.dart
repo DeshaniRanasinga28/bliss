@@ -81,7 +81,6 @@ class _HomeScreenState extends State<HomeScreen>{
                             : 0,
                         itemBuilder: (context, index) {
                           final Item item = getItemList.itemData.data[index];
-                          final Item sl = getItemList.selectedItem;
                           return InkWell(
                             child: ProductItem(
                                 item,

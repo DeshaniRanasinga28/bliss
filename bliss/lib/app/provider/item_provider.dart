@@ -1,4 +1,3 @@
-
 import 'package:bliss/app/global/colors.dart';
 import 'package:bliss/app/model/item.dart';
 import 'package:bliss/app/util/api/item_api_request.dart';
@@ -10,13 +9,13 @@ class ItemProviderModel with ChangeNotifier {
   bool isLoading = true;
   Data itemData;
 
-  List<Item> cartList = [];
-  List<Item> searchList = [];
+  List<Item> cartItemList = [];
+  List<Item> searchItemList = [];
 
   Item selectedItem = Item();
 
-  List<Item> bagList = [];
-  List<Item> purseList = [];
+  List<Item> bagItemList = [];
+  List<Item> purseItemList = [];
   double total = 0.0;
 
   getItemsData(context) {
@@ -60,56 +59,50 @@ class ItemProviderModel with ChangeNotifier {
   }
 
 
-
-  ///add single item to cart
   addToCart(context, item) {
-    if (cartList.contains(item)) {
+    if (cartItemList.contains(item)) {
     } else {
-      cartList.add(item);
-      print("cart length ${cartList.length.toString()}");
+      cartItemList.add(item);
     }
     notifyListeners();
   }
 
-  ///remove item from the cart
+
   removeFromCart(context, item) {
-    if (cartList.contains(item)) {
-      cartList.remove(item);
-      calculateTotal(context);
+    if (cartItemList.contains(item)) {
+      cartItemList.remove(item);
+      calculateTotalAmount(context);
       notifyListeners();
     }
   }
 
-  ///divide items list in to categories
   addToCategory(context, items) {
-    for (Item c in items) {
-      if (c.category == 'bag') {
-        bagList.add(c);
+    for (Item i in items) {
+      if(i.category == 'hand bag') {
+        bagItemList.add(i);
         notifyListeners();
       } else {
-        purseList.add(c);
+        purseItemList.add(i);
         notifyListeners();
       }
     }
   }
 
-  ///calculate the sum of the items in the cart list
-  calculateTotal(context) {
+  calculateTotalAmount(context) {
     total = 0;
-    for (var i = 0; i < cartList.length; i++) {
-      total += double.parse(cartList[i].price) *
-          double.parse(cartList[i].quantity.toString());
+
+    for (var i = 0; i < cartItemList.length; i++) {
+      total += double.parse(cartItemList[i].price) * double.parse(cartItemList[i].quantity.toString());
     }
     notifyListeners();
   }
 
-  ///search for a keyword specific item from the items list
   searchItems(context, keyword) {
-    searchList.clear();
+    searchItemList.clear();
     for (var i = 0; i < itemData.data.length; i++) {
       if (itemData.data[i].code == keyword) {
-        searchList.add(itemData.data[i]);
-        print(searchList.length);
+        searchItemList.add(itemData.data[i]);
+        print(searchItemList.length);
         notifyListeners();
       }
     }

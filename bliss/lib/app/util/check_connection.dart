@@ -20,6 +20,5 @@ Future checkNetworkConnection(BuildContext context) async {
   } catch (e) {
     print(e);
   }
-
   return status;
 }

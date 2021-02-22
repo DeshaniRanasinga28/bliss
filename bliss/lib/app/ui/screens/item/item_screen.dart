@@ -3,6 +3,7 @@ import 'package:bliss/app/global/colors.dart';
 import 'package:bliss/app/model/item.dart';
 import 'package:bliss/app/provider/item_provider.dart';
 import 'package:bliss/app/ui/screens/checkout/checkout_screen.dart';
+import 'package:bliss/app/ui/screens/home/home_screen.dart';
 import 'package:bliss/app/ui/widgets/common_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
@@ -44,7 +45,7 @@ class _ItemScreenState extends State<ItemScreen>{
             onPressed: () => Navigator.of(context).pushNamed("/homeScreen"),
           ),
           actions: !widget.isFromCart
-              ?
+          ?
           [
             IconButton(
               onPressed: () {},
@@ -68,6 +69,7 @@ class _ItemScreenState extends State<ItemScreen>{
             ),
             IconButton(
               onPressed: () {
+                getItemList.calculateTotalAmount(context);
                 Navigator.push(
                   context,
                   PageTransition(
@@ -78,17 +80,17 @@ class _ItemScreenState extends State<ItemScreen>{
                   ),
                 );
               },
-                icon: getItemList.cartList.length > 0
+                icon: getItemList.cartItemList.length > 0
                     ? Badge(
                     badgeContent: Text(
-                      getItemList.cartList.length.toString(),
+                      getItemList.cartItemList.length.toString(),
                       style: TextStyle(color: Colors.white),
                     ),
                     position: BadgePosition.topEnd(top: -10),
                     child: Icon(Icons.shopping_cart, color: white253),
                 ) : Icon(Icons.shopping_cart, color: white253))
-              ]
-              : []
+          ]
+          : []
         ),
         body: SafeArea(
           child: Container(
@@ -240,9 +242,9 @@ class _ItemScreenState extends State<ItemScreen>{
                         onPressed: () {
                           if(getItemList.selectedItem.quantity > 0){
                             getItemList.addToCart(context, getItemList.selectedItem);
-                            Toast.show("Added to cart",context,backgroundColor: grey,  gravity: 1);
+                            Toast.show("Item added to cart",context,backgroundColor: grey,  gravity: 1);
                           }else{
-                            Toast.show("Quantity is 0",context,backgroundColor: red, gravity: 1);
+                            Toast.show("0 qty can be add to cart",context,backgroundColor: red, gravity: 1);
                           }
                         },
                         shape: new RoundedRectangleBorder(

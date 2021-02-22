@@ -9,6 +9,9 @@ class CategoryView extends StatefulWidget {
 }
 
 class _CategoryViewState extends State<CategoryView> {
+  String bag = "hand bag";
+  String purse = "purses";
+
   @override
   Widget build(BuildContext context) {
     var h = MediaQuery.of(context).size.height;
@@ -19,22 +22,28 @@ class _CategoryViewState extends State<CategoryView> {
         scrollDirection: Axis.horizontal,
         children: [
           smallCardImageView(
+             context,
              h,
              pink159,
             'images/shopping-bags.png',
             'Bags',
+            'bag'
           ),
           smallCardImageView(
+            context,
             h,
             yellow,
             'images/wallet.png',
             'Purse',
+             'bag'
           ),
           smallCardImageView(
+            context,
             h,
             green,
             'images/play-button.png',
             'Key',
+            'bag'
           ),
         ],
       ),
