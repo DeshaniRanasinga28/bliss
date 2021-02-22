@@ -41,3 +41,24 @@ Open Runner.xcworkspace file inside the Bliss Application's ios folder using the
 # State management of the app
 The  Bliss Application has used the Flutter Provider package for State management. It mainly provides a central point to manage the state and to write front end logic. Also the Provider work on the one provider and multiple subscribers concept. Provider listens to the application changes with NotifyChangeListener it will update all the consumers
 
+# Dependencies
+`  cupertino_icons: ^1.0.0 `
+
+` intl: ^0.16.1 `
+
+`  provider: ^4.3.3 `
+
+` http: ^0.12.2 `
+
+` rxdart: ^0.25.0 `
+
+` toast: ^0.1.5 `
+
+` connectivity: ^2.0.2 `
+
+` page_transition: ^1.1.7+6 `
+
+` badges: ^1.1.6 `
+
+`.share: ^0.6.5+4 `
+
