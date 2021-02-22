@@ -23,3 +23,14 @@ Step 3 - Open the project folder using IDE (Android studio/VS code) and execute 
 Step 4 - Connect the device or create/run the virtual device (emulator):
 
 Step 5 - Run the application:
+
+## Running the application with Android Native code
+
+Step 1 - Open Android folder inside the Bliss Application using the Android Studio:
+1. Clean Project
+2. Rebuild Project
+3. Run
+
+## Running the application with iOS Native code
+
+
