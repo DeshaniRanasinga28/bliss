@@ -14,7 +14,7 @@ The Biss is an e-commerce mobile application and the following features are in t
 
   [1]: https://res.cloudinary.com/thinksmart-solution/image/upload/v1614008589/Screenshot_2021-02-22_at_21.04.46_xnjbcu.png
 
-  [2]: https://res.cloudinary.com/thinksmart-solution/image/upload/v1614008589/Screenshot_2021-02-22_at_21.04.46_xnjbcu.png
+  [2]: https://res.cloudinary.com/thinksmart-solution/image/upload/v1614009602/Screenshot_2021-02-22_at_21.26.47_plnmuj.png
   
   [3]: https://res.cloudinary.com/thinksmart-solution/image/upload/v1614009753/Screenshot_2021-02-22_at_21.29.34_hzoh3n.png
 
