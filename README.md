@@ -6,6 +6,20 @@ The Biss is an e-commerce mobile application and the following features are in t
 - Sharing details with social media.
 - Add favourite item.
 
+[![enter image description here][1]][1]
+
+[![enter image description here][2]][2]
+
+[![enter image description here][3]][3]
+
+  [1]: https://res.cloudinary.com/thinksmart-solution/image/upload/v1614008191/Screenshot_2021-02-22_at_21.03.56_sienmv.png 
+
+
+  [2]: https://res.cloudinary.com/thinksmart-solution/image/upload/v1614008249/Screenshot_2021-02-22_at_21.04.59_ravunn.png
+  
+
+  [3]: https://res.cloudinary.com/thinksmart-solution/image/upload/v1614008279/Screenshot_2021-02-22_at_21.05.06_rkvwrr.png
+
 # Deploy and Run The Biss app
 
 Step 1 - Go to the folder where you want to store your project, and clone the project repository:
