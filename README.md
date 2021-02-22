@@ -60,5 +60,9 @@ The  Bliss Application has used the Flutter Provider package for State managemen
 
 ` badges: ^1.1.6 `
 
-`.share: ^0.6.5+4 `
+`share: ^0.6.5+4 `
+
+# Third party libraries
+used Mocky for custom API responses 
+[https://designer.mocky.io/]
 
