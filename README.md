@@ -26,11 +26,16 @@ Step 5 - Run the application:
 
 ## Running the application with Android Native code
 
-Step 1 - Open Android folder inside the Bliss Application using the Android Studio:
+Open Android folder inside the Bliss Application using the Android Studio:
 1. Clean Project
 2. Rebuild Project
 3. Run
 
 ## Running the application with iOS Native code
+
+Open Runner.xcworkspace file inside the Bliss Application's ios folder using the Xcode. 
+1. Clean Build Project
+2. Build
+3. Run
 
 
