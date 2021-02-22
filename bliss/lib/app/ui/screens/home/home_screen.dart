@@ -1,11 +1,11 @@
 import 'package:bliss/app/global/colors.dart';
 import 'package:bliss/app/model/item.dart';
 import 'package:bliss/app/provider/item_provider.dart';
+import 'package:bliss/app/ui/screens/item/item_screen.dart';
 import 'package:bliss/app/ui/widgets/containers/item_view.dart';
 import 'package:bliss/app/ui/widgets/common_widget.dart';
 import 'package:bliss/app/ui/widgets/containers/category_view.dart';
 import 'package:bliss/app/ui/widgets/containers/search_view.dart';
-import 'package:bliss/app/util/api/item_api_request.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -30,12 +30,13 @@ class _HomeScreenState extends State<HomeScreen>{
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
-    final getDataPMDL = Provider.of<ItemProviderModel>(context);
+    final getItemList = Provider.of<ItemProviderModel>(context);
+
     return Scaffold(
       backgroundColor: white253,
       body:
-      !getDataPMDL.isLoading ?
-      SafeArea(
+      !getItemList.isLoading
+          ? SafeArea(
         child: CustomScrollView(
           slivers: [
             SliverFillRemaining(
@@ -75,16 +76,27 @@ class _HomeScreenState extends State<HomeScreen>{
                       color: white253,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: getDataPMDL.itemData.data.length != 0
-                            ? getDataPMDL.itemData.data.length
+                        itemCount: getItemList.itemData.data.length != 0
+                            ? getItemList.itemData.data.length
                             : 0,
                         itemBuilder: (context, index) {
-                          final Item item = getDataPMDL.itemData.data[index];
-                          return ProductItem(
-                              item,
-                              index,
-                              false,
-                          );
+                          final Item item = getItemList.itemData.data[index];
+                          final Item sl = getItemList.selectedItem;
+                          return InkWell(
+                            child: ProductItem(
+                                item,
+                                index,
+                                false,
+                                getItemList.selectedItem
+                            ),
+                            onTap: () {
+                              getItemList.setSingleItem(getItemList.itemData.data[index]);
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) => ItemScreen(false)),
+                                      (r) => false);
+                            });
                         }
                       ),
                     ),
@@ -95,9 +107,10 @@ class _HomeScreenState extends State<HomeScreen>{
             ),
           ],
         ),
-      ) :
-    Container(
-    child:Center(child: CircularProgressIndicator()))
+      )
+          : Container(
+          child: Center(
+              child: CircularProgressIndicator()))
     );
   }
 

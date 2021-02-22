@@ -13,6 +13,19 @@ Widget textLabel(text, fontSize, color, fontWeight) {
   );
 }
 
+Widget alignTextLabel(text, fontSize, color, fontWeight) {
+  return Text(
+    text,
+    textAlign: TextAlign.center,
+    style: new TextStyle(
+        fontFamily: 'Poppins',
+        fontSize: fontSize,
+        color: color,
+        fontWeight: fontWeight
+    ),
+  );
+}
+
 Widget imageView(height) {
   return new Container(
     height: height,

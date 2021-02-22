@@ -26,7 +26,7 @@ class Bliss extends StatelessWidget {
         title: 'Bliss',
         routes: {
           '/homeScreen': (context) => HomeScreen(),
-          '/checkoutScreen': (context) => CheckoutScreen()
+          '/checkoutScreen': (context) => CheckoutScreen(),
         },
         theme: ThemeData(
           // fontFamily: 'OpenSans',

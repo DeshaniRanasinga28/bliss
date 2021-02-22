@@ -1,6 +1,8 @@
 import 'package:bliss/app/global/colors.dart';
+import 'package:bliss/app/provider/item_provider.dart';
 import 'package:bliss/app/ui/widgets/common_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CheckoutScreen extends StatefulWidget{
   @override
@@ -14,14 +16,17 @@ class _CheckoutScreenState extends State<CheckoutScreen>{
   Widget build(BuildContext context) {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
+
+    final getDataPMDL = Provider.of<ItemProviderModel>(context);
+
     return Scaffold(
       backgroundColor: white253,
       resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Container(
           margin: EdgeInsets.symmetric( horizontal: 30.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: getDataPMDL.cartList.isNotEmpty
+          ? Column(crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               imageView( h < 770.0 ? 50.0 : 60.0),
               SizedBox(
@@ -29,7 +34,6 @@ class _CheckoutScreenState extends State<CheckoutScreen>{
               ),
               Expanded(
                   child: Container(
-                    color: Colors.teal,
                     child: ListView(
                       children: [
                         Container(
@@ -50,7 +54,6 @@ class _CheckoutScreenState extends State<CheckoutScreen>{
                               Expanded(
                                   child: Container(
                                     margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
-                                    color: Colors.red,
                                     child:  Image.asset('images/bag-one.png'),
                                   ),
                                 flex: 1,
@@ -58,17 +61,14 @@ class _CheckoutScreenState extends State<CheckoutScreen>{
                               Expanded(
                                 child: Container(
                                   margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
-                                  color: Colors.grey,
                                   child: Column(
                                     children: [
                                       Expanded(
                                         child: Container(
-                                          color: Colors.red,
                                           child: Row(
                                             children: [
                                               Expanded(
                                                 child: Container(
-                                                  color: Colors.redAccent,
                                                   alignment: Alignment.centerLeft,
                                                   child: textLabel('BHB003,',  h < 770.0  ? 18.0 : 20.0, grey, FontWeight.w500),
                                                 ),
@@ -76,7 +76,6 @@ class _CheckoutScreenState extends State<CheckoutScreen>{
                                               ),
                                               Expanded(
                                                 child: Container(
-                                                  color: Colors.grey,
                                                   alignment: Alignment.center,
                                                   child: Icon(Icons.close, color: white, size: 20.0,),
                                                 ),
@@ -88,7 +87,6 @@ class _CheckoutScreenState extends State<CheckoutScreen>{
                                       ),
                                       Expanded(
                                         child: Container(
-                                          color: Colors.yellow,
                                           alignment: Alignment.centerLeft,
                                           child: textLabel('Rs. 1500.00',  h < 770.0  ? 18.0 : 20.0, grey, FontWeight.w500),
                                         ),
@@ -119,7 +117,6 @@ class _CheckoutScreenState extends State<CheckoutScreen>{
                               Expanded(
                                 child: Container(
                                   margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
-                                  color: Colors.red,
                                   child:  Image.asset('images/bag-one.png'),
                                 ),
                                 flex: 1,
@@ -127,17 +124,14 @@ class _CheckoutScreenState extends State<CheckoutScreen>{
                               Expanded(
                                 child: Container(
                                   margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
-                                  color: Colors.grey,
                                   child: Column(
                                     children: [
                                       Expanded(
                                         child: Container(
-                                          color: Colors.red,
                                           child: Row(
                                             children: [
                                               Expanded(
                                                 child: Container(
-                                                  color: Colors.redAccent,
                                                   alignment: Alignment.centerLeft,
                                                   child: textLabel('BHB003,',  h < 770.0  ? 18.0 : 20.0, grey, FontWeight.w500),
                                                 ),
@@ -145,7 +139,6 @@ class _CheckoutScreenState extends State<CheckoutScreen>{
                                               ),
                                               Expanded(
                                                 child: Container(
-                                                  color: Colors.grey,
                                                   alignment: Alignment.center,
                                                   child: Icon(Icons.close, color: white, size: 20.0,),
                                                 ),
@@ -157,7 +150,6 @@ class _CheckoutScreenState extends State<CheckoutScreen>{
                                       ),
                                       Expanded(
                                         child: Container(
-                                          color: Colors.yellow,
                                           alignment: Alignment.centerLeft,
                                           child: textLabel('Rs. 1500.00',  h < 770.0  ? 18.0 : 20.0, grey, FontWeight.w500),
                                         ),
@@ -175,7 +167,25 @@ class _CheckoutScreenState extends State<CheckoutScreen>{
                   )
               )
             ],
-          ),
+          )
+          : Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              imageView( h < 770.0 ? 50.0 : 60.0),
+              Expanded(
+                child: Container(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Icon(Icons.add_shopping_cart, size:h < 770.0 ? 150.0 :180.0, color: pink97),
+                      alignTextLabel('Your cart is currently\nempty !', 20.0, grey, null)
+                    ],
+                  )
+                ),
+              )
+            ],
+          )
         )
       ),
       bottomNavigationBar: Stack(
@@ -187,13 +197,24 @@ class _CheckoutScreenState extends State<CheckoutScreen>{
             color: white253,
             child: Padding(
               padding: EdgeInsets.only(top: 25.0, bottom: 25.0,),
-              child: RaisedButton(
+              child: getDataPMDL.cartList.isNotEmpty
+                  ? RaisedButton(
                 color: pink97,
                 child: textLabel('Checkout',  h < 770.0  ? 20.0 : 24.0, white, FontWeight.w500),
-                onPressed: () {},
+                onPressed: () {
+
+                },
                 shape: new RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(10.0),
                 ),
+              )
+                  : RaisedButton(
+                color: pink97,
+                child: textLabel('Brows Items',  h < 770.0  ? 20.0 : 24.0, white, FontWeight.w500),
+                shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(10.0),
+                ),
+                onPressed: () => Navigator.of(context).pushNamed("/homeScreen"),
               ),
             )
           ),

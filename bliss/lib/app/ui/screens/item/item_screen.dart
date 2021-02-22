@@ -1,14 +1,19 @@
+import 'package:badges/badges.dart';
 import 'package:bliss/app/global/colors.dart';
 import 'package:bliss/app/model/item.dart';
 import 'package:bliss/app/provider/item_provider.dart';
+import 'package:bliss/app/ui/screens/checkout/checkout_screen.dart';
 import 'package:bliss/app/ui/widgets/common_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:toast/toast.dart';
 
 class ItemScreen extends StatefulWidget{
-  final Item item;
-  const ItemScreen(this.item);
+  final bool isFromCart;
+  ItemScreen(this.isFromCart);
+
   @override
   State<StatefulWidget> createState() {
     return _ItemScreenState();
@@ -17,55 +22,73 @@ class ItemScreen extends StatefulWidget{
 
 class _ItemScreenState extends State<ItemScreen>{
 
-  int i = 0;
-
   @override
   Widget build(BuildContext context) {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
 
-    final getDataPMDL = Provider.of<ItemProviderModel>(context);
+    final getItemList = Provider.of<ItemProviderModel>(context);
 
     bool fp = false;
-    fp = widget.item.favoriteProducts;
+    fp = getItemList.selectedItem.favoriteProducts;
 
     return Scaffold(
-        backgroundColor: Color(int.parse(widget.item.color)),
+        backgroundColor: Color(int.parse(getItemList.selectedItem.color)),
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          backgroundColor: Color(int.parse(widget.item.color)),
+          backgroundColor: Color(int.parse(getItemList.selectedItem.color)),
           centerTitle: true,
           automaticallyImplyLeading: false,
           leading: new IconButton(
             icon: const Icon(Icons.arrow_back, color: white253),
             onPressed: () => Navigator.of(context).pushNamed("/homeScreen"),
           ),
-          actions: [
+          actions: !widget.isFromCart
+              ?
+          [
             IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.share, color: white253),
+              onPressed: () {},
+              icon: Icon(Icons.share, color: white253),
             ),
             IconButton(
               onPressed: () {
-                print("favorite");
+                // print("fp:---> ${fp}");
                 fp = !fp;
-                getDataPMDL.addFavoriteProducts(
+                getItemList.addFavoriteProducts(
                     context,
                     fp,
-                    getDataPMDL.itemData.data.indexOf(getDataPMDL.selectedItem));
+                    getItemList.itemData.data.indexOf(getItemList.selectedItem));
               },
               icon: Icon(
-                Icons.favorite,
-                  color: widget.item.favoriteProducts
-                      ? red
+                  Icons.favorite,
+                  color: getItemList.selectedItem.favoriteProducts
+                      ? red180
                       : white253
               ),
             ),
             IconButton(
-              onPressed: () => Navigator.of(context).pushNamed("/checkoutScreen"),
-              icon: Icon(Icons.shopping_cart, color: white253),
-            )
-          ],
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  PageTransition(
+                    duration:  const Duration(milliseconds: 500),
+                    reverseDuration: const Duration(milliseconds: 500),
+                    type: PageTransitionType.rightToLeft,
+                    child: CheckoutScreen(),
+                  ),
+                );
+              },
+                icon: getItemList.cartList.length > 0
+                    ? Badge(
+                    badgeContent: Text(
+                      getItemList.cartList.length.toString(),
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    position: BadgePosition.topEnd(top: -10),
+                    child: Icon(Icons.shopping_cart, color: white253),
+                ) : Icon(Icons.shopping_cart, color: white253))
+              ]
+              : []
         ),
         body: SafeArea(
           child: Container(
@@ -87,7 +110,7 @@ class _ItemScreenState extends State<ItemScreen>{
                 topLeft: Radius.circular(30.0),
                 topRight: Radius.circular(30.0),
               ),
-              color: Color(int.parse(widget.item.cardcolor)),
+              color: Color(int.parse(getItemList.selectedItem.cardcolor)),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,7 +118,7 @@ class _ItemScreenState extends State<ItemScreen>{
                 Expanded(
                   child: Container(
                     alignment: Alignment.centerLeft,
-                    child: textLabel(widget.item.code,  h < 770.0 ? 36.0 : 40.0, grey, FontWeight.w500),
+                    child: textLabel(getItemList.selectedItem.code.toString(),  h < 770.0 ? 36.0 : 40.0, grey, FontWeight.w500),
                 ), flex: 2,),
                 Expanded(
                   child: Container(
@@ -115,7 +138,7 @@ class _ItemScreenState extends State<ItemScreen>{
                           Expanded(
                             child: Container(
                               // color: Colors.blue,
-                              child: textLabel(widget.item.price,  h < 770.0  ? 20.0 : 24.0, grey, FontWeight.w500),
+                              child: textLabel(getItemList.selectedItem.price.toString(),  h < 770.0  ? 20.0 : 24.0, grey, FontWeight.w500),
                             ),
                           )
                         ],
@@ -131,7 +154,7 @@ class _ItemScreenState extends State<ItemScreen>{
                           Expanded(
                             child: Container(
                               // color: Colors.blue,
-                              child: textLabel(widget.item.height,  h < 770.0  ? 20.0 : 24.0, grey, FontWeight.w500),
+                              child: textLabel(getItemList.selectedItem.height.toString(),  h < 770.0  ? 20.0 : 24.0, grey, FontWeight.w500),
                             ),
                           )
                         ],
@@ -147,7 +170,7 @@ class _ItemScreenState extends State<ItemScreen>{
                           Expanded(
                             child: Container(
                               // color: Colors.blue,
-                              child: textLabel(widget.item.width,  h < 770.0  ? 20.0 : 24.0, grey, FontWeight.w500),
+                              child: textLabel(getItemList.selectedItem.width.toString(),  h < 770.0  ? 20.0 : 24.0, grey, FontWeight.w500),
                             ),
                           )
                         ],
@@ -163,7 +186,7 @@ class _ItemScreenState extends State<ItemScreen>{
                           Expanded(
                             child: Container(
                               // color: Colors.blue,
-                              child: textLabel(widget.item.weight,  h < 770.0  ? 20.0 : 24.0, grey, FontWeight.w500),
+                              child: textLabel(getItemList.selectedItem.weight.toString(),  h < 770.0  ? 20.0 : 24.0, grey, FontWeight.w500),
                             ),
                           )
                         ],
@@ -185,16 +208,11 @@ class _ItemScreenState extends State<ItemScreen>{
                             child: Icon(Icons.remove, color: grey,),
                           ),
                           onTap: (){
-                            getDataPMDL.decrementQuant(context, getDataPMDL.itemData.data.indexOf(getDataPMDL.selectedItem));
-                            // setState(() {
-                            //   // i <= 0 ? i = 0 : i--;
-                            //   getItemList.decrementQuant(context, getItemList.itemData.data.indexOf(getItemList.selectedItem)
-                            //   );
-                            // });
+                            getItemList.qutDecrement(context, getItemList.itemData.data.indexOf(getItemList.selectedItem));
                           },
                         ),
                         Padding(padding: EdgeInsets.symmetric(horizontal: 10.0),
-                          child: textLabel(widget.item.quantity.toString(),  h < 770.0  ? 20.0 : 24.0, grey, FontWeight.w500),
+                          child: textLabel(getItemList.selectedItem.quantity.toString(),  h < 770.0  ? 20.0 : 24.0, grey, FontWeight.w500),
                         ),
                         GestureDetector(
                           child: CircleAvatar(
@@ -202,16 +220,16 @@ class _ItemScreenState extends State<ItemScreen>{
                             child: Icon(Icons.add, color: grey),
                           ),
                           onTap: (){
-                            getDataPMDL.incrementQuant(
-                                context,
-                                getDataPMDL.itemData.data.indexOf(getDataPMDL.selectedItem));
+                            getItemList.qutIncrement(context, getItemList.itemData.data.indexOf(getItemList.selectedItem));
                           },
                         )
                       ],
                     ),
                   ), flex: 1,),
                 Expanded(
-                  child: Container(
+                  child:
+                 !widget.isFromCart
+                     ? Container(
                     width: w,
                     // color: Colors.blue,
                     child: Padding(
@@ -220,14 +238,21 @@ class _ItemScreenState extends State<ItemScreen>{
                         color: pink97,
                         child: textLabel('Add to Cart',  h < 770.0  ? 20.0 : 24.0, white, FontWeight.w500),
                         onPressed: () {
-                          print('i:---> $i');
+                          if(getItemList.selectedItem.quantity > 0){
+                            getItemList.addToCart(context, getItemList.selectedItem);
+                            Toast.show("Added to cart",context,backgroundColor: grey,  gravity: 1);
+                          }else{
+                            Toast.show("Quantity is 0",context,backgroundColor: red, gravity: 1);
+                          }
                         },
                         shape: new RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(10.0),
                         ),
                       ),
                     )
-                  ), flex: 2,
+                  )
+                     : Container(),
+                  flex: 2,
                 ),
               ],
             ),
