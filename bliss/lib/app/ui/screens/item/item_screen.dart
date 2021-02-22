@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:share/share.dart';
 import 'package:toast/toast.dart';
 
 class ItemScreen extends StatefulWidget{
@@ -47,9 +48,19 @@ class _ItemScreenState extends State<ItemScreen>{
           actions: !widget.isFromCart
           ?
           [
-            IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.share, color: white253),
+            Builder(
+              builder: (BuildContext context){
+                return IconButton(
+                  onPressed: () {
+                    final RenderBox box = context.findRenderObject();
+                    Share.share(
+                        "Bliss",
+                        sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size
+                    );
+                  },
+                  icon: Icon(Icons.share, color: white253),
+                );
+              }
             ),
             IconButton(
               onPressed: () {
